@@ -41,6 +41,14 @@ class Game:
 		else:
 			self.images[name or fp] = pygame.image.load(fp)
 
+	def rot_center(self, surf, angle):
+			"""rotate an image while keeping its center
+			sourced from: https://stackoverflow.com/questions/28261163/out-of-memory-when-using-pygame-transform-rotate"""
+			image, rect = surf, surf.get_rect()
+			rot_image = pygame.transform.rotate(image, angle)
+			rot_rect = rot_image.get_rect(center=rect.center)
+			return rot_image, rot_rect
+
 	def run(self):
 		self.clock = pygame.time.Clock()
 		self.screen = pygame.display.set_mode([self.width, self.height], pygame.FULLSCREEN)

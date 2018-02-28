@@ -127,22 +127,22 @@ def main_game(game):
 				if event.key == pygame.K_UP:
 					_dis = user.displacement
 					user.displacement = _dis[0], -user.speed
+
 				elif event.key == pygame.K_DOWN:
 					_dis = user.displacement
 					user.displacement = _dis[0], user.speed
+
 				elif event.key == pygame.K_LEFT:
-					_dis = user.displacement
-					user.displacement = -user.speed, _dis[1]
+					user.rotate(5)
+
 				elif event.key == pygame.K_RIGHT:
-					_dis = user.displacement
-					user.displacement = user.speed, _dis[1]
+					user.rotate(-5)
 
 				elif event.key == pygame.K_BACKSPACE:
 					return None
 
 		game.screen.fill(colours.black)
 		game.screen.blit(pygame.transform.scale(game.images['space'], (game.width, game.height)), (0, 0))
-		user.compute_displacement()
 		user.render()
-		game.display_text('Hello This is the main game event loop.', (600, 400), size=30, colour=colours.white)
+		# game.display_text('Hello This is the main game event loop.', (600, 400), size=30, colour=colours.white)
 		pygame.display.update()
