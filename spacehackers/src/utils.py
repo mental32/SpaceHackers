@@ -12,6 +12,14 @@ def _NEWUSER(name):
 		'created_at': int(time.time())
 	}
 
+def make_dir(dirname, overwrite=True):
+	if os.path.exists(dirname):
+		if overwrite:
+			os.remove(dirname)
+			os.mkdir(dirname)
+	else:
+		os.mkdir(dirname)
+
 def extract_gif_frames(gif, outfolder='images/animated/', yield_filenames=False):
 	frame = Image.open(gif)
 	files = []

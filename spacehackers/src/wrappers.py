@@ -11,6 +11,7 @@ from .scenes import *
 
 class Game:
 	pygame.init()
+
 	def __init__(self):
 		self.width = 1366
 		self.height = 768
@@ -18,10 +19,7 @@ class Game:
 		self.images = {}
 		self.save_file = None
 
-		self.clock = pygame.time.Clock()
-		self.screen = pygame.display.set_mode([self.width, self.height], pygame.FULLSCREEN)
-
-		pygame.display.set_caption('SpaceHackers')
+		utils.make_dir('saves/', overwrite=False)
 
 	@property
 	def saves(self):
@@ -44,6 +42,10 @@ class Game:
 			self.images[name or fp] = pygame.image.load(fp)
 
 	def run(self):
+		self.clock = pygame.time.Clock()
+		self.screen = pygame.display.set_mode([self.width, self.height], pygame.FULLSCREEN)
+		pygame.display.set_caption('SpaceHackers')
+
 		self.running = True
 		next_scene = None
 		main_menu = scenes['main_menu']
